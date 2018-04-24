@@ -2,7 +2,7 @@
   "name": "testTask",
   "version": "0.0.0",
   "description": "",
-  "author": "Artёm Pavlov <pavl0ff@ya.ru> (https://github.com/temapavloff)",
+  "author": "Ilya Simonov",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
