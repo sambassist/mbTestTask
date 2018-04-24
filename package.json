@@ -23,6 +23,7 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "angular": "=1.5.11",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "ui-router": "^1.0.0-alpha.3"
   }
 }
