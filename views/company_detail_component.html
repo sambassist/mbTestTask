@@ -1,0 +1,21 @@
+<h1>О компании</h1>
+<div>
+    <span>Имя: </span>
+    <span>{{ $ctrl.company.name }}</span>
+</div>
+<div>
+    <span>ОГРН: </span>
+    <span>{{ $ctrl.company.ogrn }}</span>
+</div>
+<div>
+    <span>Тип компании: </span>
+    <span>{{ $ctrl.company.type }}</span>
+</div>
+<div>
+    <span>Дата регисттрациии: </span>
+    <span>{{ $ctrl.company.reg_date }}</span>
+</div>
+<div>
+    <span>Активность: </span>
+    <span>{{ $ctrl.company.active ? 'Активна' : 'Не активна' }}</span>
+</div>

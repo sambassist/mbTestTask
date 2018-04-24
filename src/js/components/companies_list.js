@@ -1,6 +1,4 @@
 angular.module('testTask').component('companiesList', {
-    templateUrl: 'views/companies_list.html',
-    controller: function companiesListController($dataService) {
-        this.companies = $dataService.companies;
-    }
+    templateUrl: 'views/companies_list_component.html',
+    bindings: { companies: '<' }
 });

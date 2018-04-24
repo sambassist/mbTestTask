@@ -1,6 +1,7 @@
+<h1>Список компаний</h1>
 <ul>
     <li ng-repeat="company in $ctrl.companies">
-        <a href="javascript:void(0)">
+        <a ui-sref="detail({companyId: company.id})">
             {{ company.name }}
         </a>
     </li>

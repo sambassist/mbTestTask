@@ -10,7 +10,20 @@ angular.module('testTask').config(function (
     $urlRouterProvider.otherwise('/');
 
     $stateProvider.state('home', {
-        templateUrl: 'views/home.html',
-        url: '/'
+        component: 'companiesList',
+        url: '/',
+        resolve: {
+            companies: function ($dataService) {
+                return $dataService.getAllCompanies();
+            }
+        }
+    }).state('detail', {
+        component: 'companyDetail',
+        url: '/company/{companyId}',
+        resolve: {
+            company: function ($dataService, $transition$) {
+                return $dataService.getCompany($transition$.params().companyId);
+            }
+        }
     });
 });
