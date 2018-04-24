@@ -19,3 +19,8 @@
     <span>Активность: </span>
     <span>{{ $ctrl.company.active ? 'Активна' : 'Не активна' }}</span>
 </div>
+<div>
+    <a ui-sref="edit({companyId: $ctrl.company.id})">
+        Редактировать
+    </a>
+</div>

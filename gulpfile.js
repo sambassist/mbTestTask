@@ -47,8 +47,11 @@ gulp.task('js', function() {
 
 gulp.task('vendor', function() {
     gulp.src([
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/moment/min/moment-with-locales.js',
         'node_modules/angular/angular.js',
-        'node_modules/@uirouter/angularjs/release/angular-ui-router.js'
+        'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
+        'node_modules/angularjs-datepicker/dist/angular-datepicker.js',
     ])
         .pipe(concat('vendor.js'))
         .pipe(gulpif(isProd, uglify({

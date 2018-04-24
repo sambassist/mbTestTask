@@ -1,5 +1,4 @@
-angular.module('testTask', [
-    'ui.router'], function () {});
+angular.module('testTask', ['ui.router', '720kb.datepicker'], function () {});
 
 angular.module('testTask').config(function (
     $stateProvider,
@@ -20,6 +19,14 @@ angular.module('testTask').config(function (
     }).state('detail', {
         component: 'companyDetail',
         url: '/company/{companyId}',
+        resolve: {
+            company: function ($dataService, $transition$) {
+                return $dataService.getCompany($transition$.params().companyId);
+            }
+        }
+    }).state('edit', {
+        component: 'companyEdit',
+        url: '/company/edit/{companyId}',
         resolve: {
             company: function ($dataService, $transition$) {
                 return $dataService.getCompany($transition$.params().companyId);
