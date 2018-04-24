@@ -48,6 +48,7 @@ gulp.task('js', function() {
 gulp.task('vendor', function() {
     gulp.src([
         'node_modules/angular/angular.js',
+        'node_modules/@uirouter/angularjs/release/angular-ui-router.js'
     ])
         .pipe(concat('vendor.js'))
         .pipe(gulpif(isProd, uglify({
@@ -68,7 +69,7 @@ gulp.task('templates', function () {
     })))
     .pipe(ngHtml2Js({
         moduleName: "testTask",
-        prefix: "/views/"
+        prefix: "views/"
     }))
     .pipe(gulpif(isProd, uglify({
         mangle: false,

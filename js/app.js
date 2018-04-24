@@ -1,0 +1,1 @@
+angular.module("testTask",["ui.router"],function(){}),angular.module("testTask").config(["$stateProvider","$locationProvider","$urlRouterProvider",function(e,t,o){t.html5Mode(!0),o.otherwise("/"),e.state("home",{templateUrl:"views/home.html",url:"/"})}]);
