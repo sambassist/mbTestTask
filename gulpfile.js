@@ -81,19 +81,18 @@ gulp.task('templates', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('public/src/js/**/*.js', ['js']);
-    gulp.watch('public/src/stylus/**/*.styl', ['stylus']);
-    gulp.watch('public/views/*.html', ['templates']);
-    gulp.watch('public/vendor/**/*.js', ['vendor']);
+    gulp.watch('src/js/**/*.js', ['js']);
+    gulp.watch('src/styl/**/*.styl', ['stylus']);
+    gulp.watch('views/*.html', ['templates']);
 });
 
 gulp.task('build', ['stylus', 'vendor', 'js', 'templates']);
 gulp.task('default', ['build', 'watch']);
 
 gulp.task('serve', function() {
-    gulp.src('public')
+    gulp.src('')
         .pipe(webserver({
-            host: '0.0.0.0',
+            host: 'localhost',
             port: 8000,
             livereload: true,
             directoryListing: false,
