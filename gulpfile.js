@@ -1,20 +1,25 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var gulpif = require('gulp-if');
-var stylus = require('gulp-stylus');
-var csso = require('gulp-csso');
-var uglify = require('gulp-uglify');
-var prefix = require('gulp-autoprefixer');
-var concat = require('gulp-concat');
-var webserver = require('gulp-webserver');
-var ngAnnotate = require('gulp-ng-annotate');
-var angularFilesort = require('gulp-angular-filesort');
-var notify = require('gulp-notify');
-var ngHtml2Js = require("gulp-ng-html2js");
-var minifyHtml = require("gulp-minify-html");
+var gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    gulpif = require('gulp-if'),
+    stylus = require('gulp-stylus'),
+    csso = require('gulp-csso'),
+    uglify = require('gulp-uglify'),
+    prefix = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
+    webserver = require('gulp-webserver'),
+    ngAnnotate = require('gulp-ng-annotate'),
+    angularFilesort = require('gulp-angular-filesort'),
+    notify = require('gulp-notify'),
+    ngHtml2Js = require('gulp-ng-html2js'),
+    minifyHtml = require('gulp-minify-html'),
+    browserify = require('browserify'),
+    through = require('through2'),
+    intoStream = require('into-stream'),
+    buffer = require('vinyl-buffer');
 
-var isDev = true;
-var isProd = false;
+
+var isDev = true,
+    isProd = false;
 
 if (gutil.env.type === 'prod') {
     isDev = false;
@@ -42,24 +47,15 @@ gulp.task('js', function() {
             }
         })))
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('js'));
-});
-
-gulp.task('vendor', function() {
-    gulp.src([
-        'node_modules/jquery/dist/jquery.js',
-        'node_modules/moment/min/moment-with-locales.js',
-        'node_modules/angular/angular.js',
-        'node_modules/@uirouter/angularjs/release/angular-ui-router.js',
-        'node_modules/angularjs-datepicker/dist/angular-datepicker.js',
-    ])
-        .pipe(concat('vendor.js'))
-        .pipe(gulpif(isProd, uglify({
-            mangle: false,
-            compress: {
-                drop_console: true
-            }
-        })))
+        .pipe(through.obj(function(file, encoding, next) {
+            bundle = browserify(intoStream(file.contents));
+            this.push(new gutil.File({
+                path: 'app.js',
+                contents: bundle.bundle()
+            }));
+            next()
+        }))
+        .pipe(buffer())
         .pipe(gulp.dest('js'));
 });
 
@@ -90,7 +86,7 @@ gulp.task('watch', function() {
     gulp.watch('views/*.html', ['templates']);
 });
 
-gulp.task('build', ['stylus', 'vendor', 'js', 'templates']);
+gulp.task('build', ['stylus', 'js', 'templates']);
 gulp.task('default', ['build', 'watch']);
 
 gulp.task('serve', function() {

@@ -1,3 +1,9 @@
+window.axios = require('axios');
+require('moment');
+require('angular');
+require('@uirouter/angularjs');
+require('angularjs-datepicker');
+
 angular.module('testTask', ['ui.router', '720kb.datepicker'], function () {});
 
 angular.module('testTask').config(function (
