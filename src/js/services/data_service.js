@@ -1,8 +1,8 @@
-angular.module('testTask').service('$dataService', function ($http) {
+angular.module('testTask').service('$dataService', function ($q) {
     this.getAllCompanies = function () {
-        return $http.get('data/companies.json', { cache: true }).then(function(response) {
+        return $q.when(axios.get('data/companies.json').then(function (response) {
             return response.data;
-        });
+        }));
     };
 
     this.getCompany = function(id) {

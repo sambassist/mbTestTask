@@ -20,8 +20,10 @@
     <span>{{ $ctrl.company.active ? 'Активна' : 'Не активна' }}</span>
 </div>
 <div>
-    <a ui-sref="edit({companyId: $ctrl.company.id})" ng-if="$ctrl.is_company_page">
+    <a ui-sref="edit({companyId: $ctrl.company.id})" ng-if="$ctrl.page">
         Редактировать
     </a>
-    <button ng-if="!$ctrl.is_company_page" ng-click="$ctrl.reload()">Редактировать</button>
+    <button ng-if="!$ctrl.page" ng-click="$ctrl.reload()">Редактировать</button>
 </div>
+
+<a ui-sref="home">На главную</a>

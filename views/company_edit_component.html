@@ -46,4 +46,6 @@
 
 <company-detail ng-if="$ctrl.show_result"
                 company="$ctrl.company"
-                is_company_page="false"></company-detail>
+                page="false"></company-detail>
+
+<a ui-sref="home" ng-if="!$ctrl.show_result">На главную</a>
