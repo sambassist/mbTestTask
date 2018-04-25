@@ -9,9 +9,5 @@ angular.module('testTask').component('companyEdit', {
         this.save = function () {
             this.show_result = true;
         };
-
-        this.re_edit = function () {
-            this.show_result = false;
-        }
     }
 });

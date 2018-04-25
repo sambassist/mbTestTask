@@ -44,30 +44,6 @@
     <button type="submit">СОХРАНИТЬ</button>
 </form>
 
-<div ng-if="$ctrl.show_result">
-    <h2>Сохраненные данные</h2>
-    <div>
-        <span>Имя: </span>
-        <span>{{ $ctrl.company.name }}</span>
-    </div>
-    <div>
-        <span>ОГРН: </span>
-        <span>{{ $ctrl.company.ogrn }}</span>
-    </div>
-    <div>
-        <span>Тип компании: </span>
-        <span>{{ $ctrl.company.type }}</span>
-    </div>
-    <div>
-        <span>Дата регисттрациии: </span>
-        <span>{{ $ctrl.company.reg_date }}</span>
-    </div>
-    <div>
-        <span>Активность: </span>
-        <span>{{ $ctrl.company.active ? 'Активна' : 'Не активна' }}</span>
-    </div>
-    <br>
-    <button ng-click="$ctrl.re_edit()">
-        Редактировать
-    </button>
-</div>
+<company-detail ng-if="$ctrl.show_result"
+                company="$ctrl.company"
+                is_company_page="false"></company-detail>

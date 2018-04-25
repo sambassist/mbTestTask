@@ -28,6 +28,9 @@ angular.module('testTask').config(function (
         resolve: {
             company: function ($dataService, $transition$) {
                 return $dataService.getCompany($transition$.params().companyId);
+            },
+            is_company_page: function () {
+                return true;
             }
         }
     }).state('edit', {
